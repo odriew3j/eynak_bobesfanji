@@ -1,0 +1,23 @@
+name: Send Telegram Message
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  send_message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send message to Telegram
+        uses: appleboy/telegram-send-message@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: "Hello from GitHub Actions! Here is an image, a link, and a discount code."
+          image: "https://example.com/image.jpg"
+          link: "https://example.com"
+          keyboard: |
+            [
+              [{"text": "Get discount", "url": "https://example.com/discount"}]
+            ]
